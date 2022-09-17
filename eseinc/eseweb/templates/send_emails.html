@@ -1,0 +1,50 @@
+{% extends "admin_panel.html" %}
+
+
+{% block title %}
+Add an email
+{% endblock %}
+
+{% block action %}
+Add an Email
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+            <div>
+
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                
+                        <div class="form-floating">
+                
+                            {% if form.project_name.errors %}
+                              {{ form.project_name(class="form-control is-invalid") }}
+                              <div class='invalid-feedback'>
+                                {% for error in form.project_name.errors %}
+                                  <span>{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                
+                            {% else %}
+                               {{ form.project_name(class="form-control") }}
+                            {% endif %}
+                
+                            <label for="email">{{ form.project_name.label }}</label>
+                            
+                        </div>
+                        <br>           
+                    <br>
+                
+                    {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+                    <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

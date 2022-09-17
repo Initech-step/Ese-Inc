@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}
+Welcome to our Blog
+{% endblock %}
+
+{% block body %}
+
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog.css')}}">
+<style>
+    .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    }
+
+    @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+    }
+
+</style>
+    
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+
+<br>
+<br>
+<body class="mt-4">  
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 text-center">
+                    <a class="blog-header-logo text-white" href="{{ url_for('blog_home') }}">Ese Blog</a>
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-md btn-light esecolor fw-bold" href="{{ url_for('subscribe_to_newsletter') }}">Subscribe to Our newsletter</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+                {% for category in categories %}
+                    <a class="btn btn-md eseredback text-white mx-1" href="{{ url_for('blog_by_category', category_id=category.id) }}">{{ category.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <div class="p-3 p-md-4 mb-4 bg-light rounded">
+            <div class="col-md-10 px-0">
+                <h1 class="display-6 fst-italic esecolor">{{ last_post.title }}</h1>
+                <p class="lead my-3 esecolor">{{ last_post.preview_text }}...</p>
+                <a href="{{ url_for('blog_post', post_id=last_post.id) }}" class="btn btn-md esecolorbck text-white fw-bold">Continue reading...</a>
+                <p class="lead my-3 esecolor mt-1">Current category: {{ current_category.name }}</p>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+        
+            <!--Blog posts enter here-->
+            <div class="col-md-8">
+                <!--Post container-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <!--Loop starts here-->
+                        
+                        {% for post in posts.items %}
+                        {% set post_img = 'blog_posts_image/' + post.post_image %}
+                            <div class="col-12 col-md-12 col-lg-6 my-2">
+
+                                <div class="card">
+                                    <img class="card-img" src="{{ url_for('static', filename=post_img) }}" alt="Bologna" style="max-height: 227px;">
+                                
+                                    <div class="">
+                                        <div class="card-body">
+                                            <h6 class="card-title">{{ post.title }}</h6>
+                                            <small class="text-muted cat">
+                                            Mins read: {{ post.mins_read }}
+                                            </small>
+                                            <p class="card-text">{{ post.preview_text }}...</p>
+                                            <a href="{{ url_for('blog_post', post_id=post.id) }}" class="btn esecolorbck text-white">Read more..</a>
+                                        </div>
+                    
+                                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                            <div class="views">
+                                                {{ post.date_posted }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <!--Lopp ends here-->
+                    </div>
+                </div>
+                <!--Post cont-->
+            </div>
+            <!--End here-->
+            <div class="col-md-4 mt-1">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="fst-italic esecolor">Categories</h4>
+                        <p class="mb-0 esecolor">We have quite a collection</p>
+                        <ol class="list-unstyled mb-0" style="line-height: 2;">
+                            {% for category in categories %}
+                                <li><a href="{{ url_for('blog_by_category', category_id=category.id ) }}" class="esered">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row align-content-center justify-content-center align-items-center mt-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                
+                {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, right_current=2, left_current=1) %}
+                    {% if page_num %}
+                        {% if posts.page == page_num %}
+                            <li class="mx-1"><a class="text-white btn btn-md btn-warning" style="text-decoration: none;" href="{{ url_for('blog_by_category', category_id=current_category.id, page=page_num) }}">{{ page_num }}</a></li>
+                        {% else %}
+                            <li class="mx-1"><a class="text-white btn eseredback" style="text-decoration: none;" href="{{ url_for('blog_by_category', category_id=current_category.id, page=page_num ) }}">{{ page_num }}</a></li>
+                        {% endif %}
+                    {% else %}
+                    ...
+                    {% endif %}
+                {% endfor %}
+
+                </ul>
+            </nav>
+        </div>
+
+
+
+
+
+    </main>
+{% endblock %}

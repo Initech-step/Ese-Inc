@@ -1,0 +1,64 @@
+{% extends "admin_panel.html" %}
+
+
+{% block title %}
+Add a client review
+{% endblock %}
+
+{% block action %}
+Add a client review
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+            <div>
+
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                    
+                        <div class="form-floating">
+                            {% if form.client_name.errors %}
+                                {{ form.client_name(class="form-control is-invalid") }}
+                                <div class='invalid-feedback'>
+                                {% for error in form.client_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                                </div>
+                
+                            {% else %}
+                                {{ form.client_name(class="form-control") }}
+                            {% endif %}
+                            <label for="password">{{ form.client_name.label }}</label>
+                        </div>
+                        <br>
+
+                        <div class="form-floating">
+                            {% if form.client_review.errors %}
+                                {{ form.client_review(class="form-control is-invalid") }}
+                                <div class='invalid-feedback'>
+                                {% for error in form.client_review.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                                </div>
+                
+                            {% else %}
+                                {{ form.client_review(class="form-control") }}
+                            {% endif %}
+                            <label for="password">{{ form.client_review.label }}</label>
+                        </div>
+                        <br>          
+                        <br>
+                    
+                
+                    {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+                    <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "admin_panel.html" %}
+
+
+{% block title %}
+Make a post
+{% endblock %}
+
+{% block action %}
+Make a post
+{% endblock %}
+
+
+{% block body %}
+
+
+<style>
+  p {
+    margin:0;
+  }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-10">
+            <div>
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                
+                        <div class="form-floating">
+                            {% if form.title.errors %}
+                              {{ form.title(class="form-control is-invalid") }}
+                              <div class='invalid-feedback'>
+                                {% for error in form.title.errors %}
+                                  <span>{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                
+                            {% else %}
+                               {{ form.title(class="form-control") }}
+                            {% endif %}
+                
+                            <label for="email">{{ form.title.label }}</label>
+                        </div>
+                        <br>
+                
+                        <div class="form-floating">
+                          {{ form.post_body }}
+                        </div>
+                        <br>
+
+                        <div class="form-floating">
+                            {% if form.post_preview.errors %}
+                              {{ form.post_preview(class="form-control is-invalid") }}
+                              <div class='invalid-feedback'>
+                                {% for error in form.post_preview.errors %}
+                                  <span>{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                              <label for="post_preview">{{ form.post_preview.label }}</label>
+                            {% else %}
+                              {{ form.post_preview(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <br>
+
+                        <div class="form-floating">
+                            {% if form.mins_read.errors %}
+                              {{ form.mins_read(class="form-control is-invalid") }}
+                              <div class='invalid-feedback'>
+                                {% for error in form.mins_read.errors %}
+                                  <span>{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                            {% else %}
+                              {{ form.mins_read(class="form-control") }}
+                            {% endif %}
+                            <label for="password">{{ form.mins_read.label }}</label>
+                        </div>
+                        <br>
+                
+                        <div class="form-floating">
+                            {% if form.category.errors %}
+                              {{ form.category(class="form-control is-invalid") }}
+                              <div class='invalid-feedback'>
+                                {% for error in form.category.errors %}
+                                  <span>{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                
+                            {% else %}
+                                {{ form.category(class="form-control") }}
+                            {% endif %}
+                            <label for="password">{{ form.category.label }}</label>
+                        </div>
+                        <br>
+
+
+                        <div>
+                          {% if form.photo.errors %}
+                            {{ form.photo(class="form-control is-invalid") }}
+                            <div class='invalid-feedback'>
+                              {% for error in form.photo.errors %}
+                                <span>{{ error }}</span>
+                              {% endfor %}
+                            </div>
+
+                            <label for="photo">{{ form.photo.label }}</label>
+                          {% else %}
+                            {{ form.photo(class="form-control") }}
+                          {% endif %}    
+                        </div>
+                        <br>
+                        {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+                        <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+  tinymce.init({
+    selector: '#post_body'
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+Update or delete projects
+{% endblock %}
+
+{% block action %}
+Update or delete a project
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        {% for project in all_projects %}
+        <div class="col-12 col-md-4 col-lg-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="text-left">
+                        <div class="p-1 m-2">
+                            <p><i>Project name:</i> {{ project.project_name }}</p>
+                            <p><i>Project description:</i> {{ project.project_description }}</p>
+                            <p class="mb-0"><i>Client name:</i> {{ project.client_name }}</p>
+                            <p><i>Client review:</i> {{ project.client_review }}</p>
+                            <a href="{{ url_for('update_project', proj_id=project.id) }}" class="text-white btn btn-md btn-primary m-1">Update Project</a>
+                            <a href="{{ url_for('delete_project', proj_id=project.id) }}" class="text-white btn btn-md btn-danger m-1">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}

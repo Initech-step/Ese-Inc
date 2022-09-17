@@ -1,0 +1,45 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+Update or delete reviews
+{% endblock %}
+
+{% block action %}
+Update or delete a review
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        {% for review in reviews %}
+        <div class="col-12 col-md-4 col-lg-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="text-left">
+                        <div class="p-1 m-2">
+                            <p class="card-text mb-0"><i>Client name:</i> {{ review.client_name }}</p>
+                            <p class="card-text"><i>Review:</i> {{ review.client_review }}</p>
+                            <a href="{{ url_for('update_review', review_id=review.id) }}" class="text-white btn btn-md btn-primary m-1">Update review</a>
+                            <a href="{{ url_for('delete_review', review_id=review.id) }}" class="text-white btn btn-md btn-danger m-1">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}
+
+
+  <footer class="footer mt-auto py-3" style="background-color: #000000; background: #000000;">
+      <div class="container">
+        <div style="display:flex; justify-content: center;">
+          <a class="nav-link lead font-weight-bold text-white" aria-current="page" href="{{ url_for('artists') }}">Artist Section</a>
+          <a class="nav-link lead font-weight-bold text-white" aria-current="page" href="{{ url_for('venues') }}">Venue section</a>
+          <a class="nav-link lead font-weight-bold text-white" aria-current="page" href="#">Show section</a>
+      </div>
+    </footer>

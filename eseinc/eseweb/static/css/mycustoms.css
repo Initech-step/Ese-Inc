@@ -1,0 +1,128 @@
+.esecolor{
+	color: #040435;
+}
+.esecolorbck{
+	background-color: #040435;
+}
+
+.navspaceli{
+	line-height: 1.5;
+}
+.esered{
+	color: rgb(221, 0, 4);
+}
+.eseredback{
+	background-color: rgb(221, 0, 4);
+}
+
+.subdue{
+	text-decoration: none;
+	color: #040435;
+}
+
+body{
+	background-color: #040435;
+}
+
+.headings{
+	text-decoration: underline;
+	text-decoration-color: rgb(221, 0, 4);
+	color: white;
+}
+
+.headings2{
+	text-decoration: underline;
+	text-decoration-color: rgb(221, 0, 4);
+	color: #040435;
+}
+
+.listservices{
+	list-style: none;
+}
+
+hr{
+	background-color: white;
+}
+
+.whitediv{
+	width: 100%;
+	padding: 20px;
+	background-color: white;
+}
+
+
+.blockquote-custom {
+	position: relative;
+	font-size: 1.1rem;
+}
+  
+.blockquote-custom-icon {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: -25px;
+	left: 50px;
+}
+
+.textit{
+	font-style: italic;
+}
+
+.card-img {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+  }
+  
+.card-title {
+	margin-bottom: 0.3rem;
+  }
+  
+.cat {
+	display: inline-block;
+	margin-bottom: 1rem;
+  }
+  
+.fa-users {
+	margin-left: 1rem;
+  }
+  
+.card-footer {
+	font-size: 0.8rem;
+  }
+
+
+.logo-control{
+	width: 150px;
+}
+
+
+
+
+
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
+
+.progress {
+  height: 20px;
+}

@@ -1,0 +1,41 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+View or delete emails
+{% endblock %}
+
+{% block action %}
+View or delete emails
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>  
+                    {% for email in all_emails %}
+                        <div class="m-1">
+                            <tr>
+                                <td>{{ email.Email }}</td>
+                                <td><a href="{{ url_for('delete_email', email_id=email.id) }}" class="text-white btn btn-md btn-danger m-1">Delete</a>
+                                </td>
+                            </tr>
+                        </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+

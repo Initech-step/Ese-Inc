@@ -1,0 +1,36 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+Update or delete posts
+{% endblock %}
+
+{% block action %}
+Update or delete a post
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+
+        {% for post in all_posts %}
+        <div class="col-12 col-md-4 col-lg-4">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="text-left">
+                        <div class="p-1 m-2">
+                            <p class="card-text"><i>Title:</i> {{ post.title }}</p>
+                            <p class="card-text mb-0"><i>Category:</i> {{ post.category.name }}</p>
+                            <p class="card-text"><i>Date Posted:</i> {{ post.date_posted }}</p>
+                            <a href="{{ url_for('update_post', post_id=post.id) }}" class="text-white btn btn-md btn-primary m-1">Update Post</a>
+                            <a href="{{ url_for('delete_post', post_id=post.id) }}" class="text-white btn btn-md btn-danger m-1">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}

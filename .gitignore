@@ -1,0 +1,9 @@
+.env*
+migrations
+migrations/
+eseinc/eseweb/__pycache__/
+.env_file
+.db
+esevenv/
+esevenv
+*.pyc

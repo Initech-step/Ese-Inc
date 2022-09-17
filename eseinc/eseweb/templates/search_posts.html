@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search our posts
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+            <div>
+                <p class="fs-4 text-white">Search for?</p>
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="form-floating">
+                        {% if form.search.errors %}
+                            {{ form.search(class="form-control is-invalid") }}
+                            <div class='invalid-feedback'>
+                            {% for error in form.search.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                            </div>
+            
+                        {% else %}
+                            {{ form.search(class="form-control") }}
+                        {% endif %}
+                        <label for="search">{{ form.search.label }}</label> 
+                    </div>
+                    <div class="form-floating mt-1">
+                        {% if form.search_by.errors %}
+                            {{ form.search_by(class="form-control is-invalid") }}
+                            <div class='invalid-feedback'>
+                            {% for error in form.search_by.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                            </div>
+            
+                        {% else %}
+                            {{ form.search_by(class="form-control") }}
+                        {% endif %}
+                        <label for="search_by">{{ form.search_by.label }}</label> 
+                    </div>          
+                    <br>                   
+                    {{ form.submit(class="w-100 btn btn-lg eseredback text-white") }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container mt-2">
+    <div class="row justify-content-center">
+        <h2 class="text-white text-center">Results</h2>
+        {% for result in results %}
+        <div class="col-12 col-md-4 col-lg-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="p-1 m-2">
+                        <p class="card-text mb-0"><b><i>Post title:</i></b> {{ result.title}}</p>
+                        <p class="card-text"><b><i>Post preview:</i></b> {{ result.preview_text }}</p>
+                        <a href="{{ url_for('blog_post', post_id=result.id) }}" class="text-white btn btn-md eseredback m-1">Read post</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock %}

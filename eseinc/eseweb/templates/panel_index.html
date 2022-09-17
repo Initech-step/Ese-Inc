@@ -1,0 +1,26 @@
+{% extends "admin_panel.html" %}
+
+
+{% block title %}
+Ese Admin Home
+{% endblock %}
+
+{% block action %}
+Ese Admin Home
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7 text-left">
+            {% if current_user.is_authenticated %}
+                <p class="fs-4"><b>Email:</b> {{ current_user.email }}</p>
+                <p class="fs-4"><b>Username:</b> {{ current_user.username }}</p>
+            {% else %}
+                <p>Invalid....</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

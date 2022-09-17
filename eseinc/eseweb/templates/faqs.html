@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Welcome to the home of everything writting, Ese.
+{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            {% for faq in faqs %}
+            <div class="col-12 col-lg-5 col-md-6">
+                
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div style="line-height: 2;">
+                            <p class="esecolor card-title"><b><i>Question:</i></b> {{ faq.question }}</p>
+                            <p class="esecolor card-title"><b><i>Answer: </i></b>{{ faq.answer }}</p>
+                        </div>         
+                    </div>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

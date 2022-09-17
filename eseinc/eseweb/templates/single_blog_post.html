@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+Single Blog post 
+{% endblock %}
+
+
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog.css')}}">
+<style>
+    .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    }
+
+    @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+    }
+</style>
+    
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+
+<br>
+<br>
+<body class="mt-4 bg-light">  
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 text-center">
+                    <a class="blog-header-logo esecolor" href="{{ url_for('blog_home') }}">Ese Blog</a>
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-md esecolorbck fw-bold text-white" href="{{ url_for('subscribe_to_newsletter') }}">Subscribe to Our newsletter</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+            {% for category in categories %}
+                <a class="btn btn-md eseredback text-white mx-1" href="#">{{ category.name }}</a>
+            {% endfor %}
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="row mb-2">
+        
+            <!--Blog posts enter here-->
+            <div class="col-md-8 mt-3">
+                <!--Post container-->
+                <div>
+                    {% set post_img = 'blog_posts_image/' + post.post_image %}
+                    <img src="{{ url_for('static', filename=post_img) }}" class="img-fluid">
+                        <h3 class="mt-4">{{ post.title }}</h3>
+                        <div style="display: flex;">
+                            <p class="esered mx-2 fw-bold">Date Posted: {{ post.date_posted }} </p>
+                            <p class="esered fw-bold">Category: {{ post.category.name }}</p>
+                        </div>
+                    <div>
+                        {{ post.body|safe }}
+                    </div>
+
+                </div>
+                <!--Post cont-->
+            </div>
+            <!--End here-->
+
+            <div class="col-md-3 mt-3 esecolorbck text-white">
+                <div class="position-sticky esecolorbck">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="fst-italic esecolor">Categories</h4>
+                        <p class="mb-0 text-info">We have quite a collection</p>
+                        <ol class="list-unstyled mb-0" style="line-height: 2;">
+                            {% for category in categories %}
+                                <li><a href="{{ url_for('blog_by_category', category_id=category.id ) }}" class="esecolor">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        
+        </div>
+    </main>
+
+
+
+{% endblock %}

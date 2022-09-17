@@ -1,0 +1,30 @@
+{% extends "admin_panel.html" %}
+
+
+{% block title %}
+Confirm Delete
+{% endblock %}
+
+{% block action %}
+Confirm delete
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+            <div class="text-center">
+
+                    <form method="POST" action="">
+                        <input type="submit" value='Delete Post' class="btn btn-lg btn-danger">
+                        <br>
+                    </form>
+                    <br>
+                    <a href="{{ url_for('updelpost') }}" class="btn btn-white btn-lg text-white bg-primary" type="button">Cancel</a>
+                    <p class="mt-5 mb-3 text-muted">&copy; Ese Consult</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+View Posts
+{% endblock %}
+
+
+{% block body %}
+<div class="container bg-primary">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8">
+            <div>
+
+                {% for post in all_posts %}
+                <div class="p-2 mb-1">
+                    <div class="container">
+                        <div class="row p-3 ">
+                            <div class="col-12 col-md-12 col-lg-12 rounded-3">
+                              <p class="fw-bold lead">Title: {{ post.title }}</p>
+                              <p>Category: {{ post.category }}</p>
+                              <p>Date: {{ post.date_posted }}</p>
+                              <p class="col-md-8 text-white">Body: {{ post.body|safe }}</p>
+                
+                              <a href="{{ url_for('blog_post', post_id=post.id) }}" class="btn text-white esecolorbck" type="button">Read more</a>
+
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

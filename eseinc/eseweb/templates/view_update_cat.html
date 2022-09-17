@@ -1,0 +1,41 @@
+{% extends "admin_panel.html" %}
+
+{% block title %}
+View or Update categories
+{% endblock %}
+
+{% block action %}
+View or update categories
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-7">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Category</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                </thead>
+
+                <tbody>  
+                    {% for category in categories %}
+                        <div class="m-1">
+                            <tr>
+                                <td>{{ category.name }}</td>
+                                <td><a href="{{ url_for('update_category', category_id=category.id) }}" class="text-white btn btn-md btn-primary m-1">Update</a>
+                                </td>
+                            </tr>
+                        </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
